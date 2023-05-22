@@ -1,0 +1,710 @@
+{
+	"info": {
+		"_postman_id": "8a619d9d-d33d-4765-ac00-73a956332771",
+		"name": "Proyecto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Departamentos",
+			"item": [
+				{
+					"name": "DepartamentosAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/mercancias/departamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"departamentos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Proveedores",
+			"item": [
+				{
+					"name": "ProveedoresAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/mercancias/proveedores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"proveedores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Proveedor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/mercancias/proveedores/proveedor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"proveedores",
+								"proveedor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProveedorPut",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailContacto\": \"alejandro@iesdoctorbalmis.com\",\r\n    \"nombre\": \"alejandro\",\r\n    \"proveedorId\": 1,\r\n    \"telefonoContacto\": 123456789\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/mercancias/proveedores/edit-proveedor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"proveedores",
+								"edit-proveedor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProveedoresPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailContacto\": \"doctorbalmis@gmail.balmis\",\r\n    \"nombre\": \"DOCTOR BALMIS\",\r\n    \"telefonoContacto\": 123456789\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/mercancias/proveedores/add-proveedor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"proveedores",
+								"add-proveedor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProveedorDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/mercancias/proveedores/delete-proveedor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"proveedores",
+								"delete-proveedor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "ProductosPut",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productoId\": 80,\r\n    \"precio\": 10.0,\r\n    \"nombre\": \"Judías rojas\",\r\n    \"departamentoId\":{\r\n        \"departamentoId\": 4,\r\n        \"nombre\": \"Frutería\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/mercancias/productos/add-producto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"productos",
+								"add-producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductoPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"precio\": 10,\r\n        \"nombre\": \"Churrasco\",\r\n        \"departamentoId\": {\r\n            \"departamentoId\": 1,\r\n            \"nombre\": \"Carnicería\"\r\n        }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/mercancias/productos/add-producto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"productos",
+								"add-producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductoDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/web/clasificacion/externo/borrar-departamento/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"web",
+								"clasificacion",
+								"externo",
+								"borrar-departamento",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductosAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/web/plataforma/externo/departamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"web",
+								"plataforma",
+								"externo",
+								"departamentos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/mercancias/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CheckPass",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"balmis@gmail.com\",\r\n        \"contrasena\": \"1234\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/mercancias/usuarios/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CheckPass Copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"balmis@gmail.com\",\r\n  \"oldPassword\": \"4321\",\r\n  \"newPassword\": \"1234\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/Password/webresources/usuarios/change-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Password",
+								"webresources",
+								"usuarios",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "PedidosPut",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"departamentoId\": 5,\r\n        \"jefe\": 1,\r\n        \"nombre\": \"Pescadería\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/web/plataforma/almacen/edit-producto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"web",
+								"plataforma",
+								"almacen",
+								"edit-producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PedidosPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"jefe\": 3,\r\n        \"nombre\": \"Carnicería\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/web/plataforma/clasificacion/add-departamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"web",
+								"plataforma",
+								"clasificacion",
+								"add-departamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PedidoDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/web/plataforma/externo/borrar-proveedor/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"web",
+								"plataforma",
+								"externo",
+								"borrar-proveedor",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PedidosAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/web/plataforma/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"web",
+								"plataforma",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductosPedidos",
+			"item": [
+				{
+					"name": "ProductosPedidoPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"cantidad\": 5,\r\n        \"pedidoId\": 11,\r\n        \"precioTotal\": 17.25,\r\n        \"productosId\": 10\r\n    },\r\n    {\r\n        \"cantidad\": 10,\r\n        \"pedidoId\": 11,\r\n        \"precioTotal\": 49.9,\r\n        \"productosId\": 11\r\n    },\r\n    {\r\n        \"cantidad\": 10,\r\n        \"pedidoId\": 11,\r\n        \"precioTotal\": 52.5,\r\n        \"productosId\": 12\r\n    },\r\n    {\r\n        \"cantidad\": 20,\r\n        \"pedidoId\": 11,\r\n        \"precioTotal\": 139.8,\r\n        \"productosId\": 4\r\n    },\r\n    {\r\n        \"cantidad\": 35,\r\n        \"pedidoId\": 11,\r\n        \"precioTotal\": 306.25,\r\n        \"productosId\": 13\r\n    }\r\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/mercancias/productospedidos/add-productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"productospedidos",
+								"add-productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductosPedidosById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/mercancias/productospedidos/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"productospedidos",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductosPedidosAll Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/mercancias/productospedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mercancias",
+								"productospedidos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
