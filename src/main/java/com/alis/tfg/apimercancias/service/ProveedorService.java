@@ -33,28 +33,25 @@ public class ProveedorService
 	public Boolean edit ( Proveedor proveedor )
 	{
 		Boolean result = false;
-		try
+
+		if ( proveedor != null )
 		{
-			if ( proveedor != null )
+			if ( repository.existsById ( proveedor.getId ( ) ) && repository.findByNombre ( proveedor.getNombre ( ) )
+					.isEmpty ( ) )
 			{
 				repository.save ( proveedor );
 				result = true;
 			}
+		}
 
-			return result;
-		}
-		catch ( Exception ex )
-		{
-			result = false;
-			return result;
-		}
+		return result;
 	}
 
 	public Boolean add ( ProveedorDto proveedorDto )
 	{
 		Boolean result = false;
 
-		if ( !repository.findByNombre ( proveedorDto.getNombre ( ) )
+		if ( repository.findByNombre ( proveedorDto.getNombre ( ) )
 				.isEmpty ( ) )
 		{
 			repository.save ( mapper.toEntity ( proveedorDto ) );
@@ -68,7 +65,7 @@ public class ProveedorService
 	{
 		boolean result = false;
 
-		if ( this.read ( id ) != null )
+		if ( this.read ( id ) != null && repository.existsById ( id ) )
 		{
 			repository.deleteById ( id );
 			result = true;

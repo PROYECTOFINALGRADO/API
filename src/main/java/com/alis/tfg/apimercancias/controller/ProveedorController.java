@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,13 +36,13 @@ public class ProveedorController
 	}
 
 	@PutMapping ( "/edit-proveedor" )
-	public Boolean edit ( Proveedor proveedor )
+	public Boolean edit ( @RequestBody Proveedor proveedor )
 	{
 		return service.edit ( proveedor );
 	}
 
 	@PostMapping ( "/add-proveedor" )
-	public Boolean add ( ProveedorDto proveedorDto )
+	public Boolean add ( @RequestBody ProveedorDto proveedorDto )
 	{
 		return service.add ( proveedorDto );
 	}

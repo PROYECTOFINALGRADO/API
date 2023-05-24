@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alis.tfg.apimercancias.dto.ProductoCompletoDto;
 import com.alis.tfg.apimercancias.dto.ProductoDto;
 import com.alis.tfg.apimercancias.mapper.ProductoMapper;
 import com.alis.tfg.apimercancias.model.Departamento;
@@ -27,12 +28,13 @@ public class ProductoService
 	DepartamentoService departamentoService;
 
 	@Transactional
-	public List < Producto > read ( )
+	public List < ProductoCompletoDto > read ( )
 	{
 		List < Producto > productos = repository.findAll ( );
-		productos.forEach ( Producto::getDepartamento );
+		return productos.stream ( )
+				.map ( mapper::toDtoCompleto )
+				.toList ( );
 
-		return productos;
 	}
 
 	public Producto read ( Long id )
@@ -48,8 +50,13 @@ public class ProductoService
 		{
 			if ( productoDto != null )
 			{
-				repository.save ( this.toEntity ( productoDto ) );
-				result = true;
+				Optional < Producto > producto = repository.findById ( productoDto.getProductoId ( ) );
+				if ( producto.isPresent ( ) && repository.findByNombre ( productoDto.getNombre ( ) )
+						.isEmpty ( ) )
+				{
+					repository.save ( this.toEntity ( productoDto ) );
+					result = true;
+				}
 			}
 
 			return result;

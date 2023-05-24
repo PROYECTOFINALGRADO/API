@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductoPedidoDto
+public class ProductoPedidoInsertDto
 		implements Serializable
 {
-	private ProductoCompletoDto producto;
+	private Long productosId;
+
+	private Long pedidoId;
 
 	private Integer cantidad;
 

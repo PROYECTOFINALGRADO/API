@@ -1,14 +1,18 @@
 package com.alis.tfg.apimercancias.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alis.tfg.apimercancias.dto.PedidoCompletoDto;
 import com.alis.tfg.apimercancias.dto.PedidoDto;
 import com.alis.tfg.apimercancias.mapper.PedidoMapper;
 import com.alis.tfg.apimercancias.model.Pedido;
 import com.alis.tfg.apimercancias.repository.PedidoRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class PedidoService
@@ -22,35 +26,57 @@ public class PedidoService
 	@Autowired
 	PedidoMapper mapper;
 
-	public List < Pedido > read ( )
+	@Transactional
+	public List < PedidoCompletoDto > read ( )
 	{
-		return repository.findAll ( );
+		return repository.findAll ( )
+				.stream ( )
+				.map ( mapper::toDtoCompleto )
+				.toList ( );
 	}
 
-	public Pedido read ( Long id )
+	public Pedido readEntity ( Long id )
 	{
 		return repository.findById ( id )
 				.orElse ( null );
 	}
 
-	public Boolean edit ( Pedido pedido )
+	@Transactional
+	public PedidoCompletoDto read ( Long id )
+	{
+		return mapper.toDtoCompleto ( repository.findById ( id )
+				.orElse ( null ) );
+	}
+
+	@Transactional
+	public Boolean edit ( PedidoDto dto )
 	{
 		Boolean result = false;
-		try
+		Optional < Pedido > pedidoDb = repository.findById ( dto.getId ( ) );
+
+		if ( dto != null && pedidoDb.isPresent ( ) )
 		{
-			if ( pedido != null )
+			Pedido pedido = mapper.toEntity ( dto );
+
+			if ( dto.getCodigoProveedor ( ) != null )
 			{
-				repository.save ( pedido );
-				result = true;
+				pedido.setCodigoProveedor ( proveedorService.read ( dto.getCodigoProveedor ( ) ) );
 			}
 
-			return result;
+			if ( !pedidoDb.get ( )
+					.getProductosPedidosCollection ( )
+					.isEmpty ( ) )
+			{
+				pedido.setProductosPedidosCollection ( pedidoDb.get ( )
+						.getProductosPedidosCollection ( ) );
+			}
+
+			repository.save ( pedido );
+			result = true;
 		}
-		catch ( Exception ex )
-		{
-			result = false;
-			return result;
-		}
+
+		return result;
+
 	}
 
 	public Long add ( PedidoDto pedidoDto )
@@ -59,7 +85,10 @@ public class PedidoService
 		if ( pedidoDto != null )
 		{
 			Pedido pedido = mapper.toEntity ( pedidoDto );
-			pedido.setCodigoProveedor ( proveedorService.read ( pedidoDto.getCodigoProveedor ( ) ) );
+			if ( pedidoDto.getCodigoProveedor ( ) != null )
+			{
+				pedido.setCodigoProveedor ( proveedorService.read ( pedidoDto.getCodigoProveedor ( ) ) );
+			}
 			result = repository.save ( pedido )
 					.getPedidoId ( );
 		}
