@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,13 +35,13 @@ public class ProductoController
 	}
 
 	@PutMapping ( "/edit-producto" )
-	public Boolean edit ( Producto producto )
+	public Boolean edit ( @RequestBody ProductoDto productoDto )
 	{
-		return service.edit ( producto );
+		return service.edit ( productoDto );
 	}
 
 	@PostMapping ( "/add-producto" )
-	public Boolean add ( ProductoDto productoDto )
+	public Boolean add ( @RequestBody ProductoDto productoDto )
 	{
 		return service.add ( productoDto );
 	}

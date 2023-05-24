@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alis.tfg.apimercancias.dto.ContrasenaDto;
 import com.alis.tfg.apimercancias.dto.UsuarioDto;
 import com.alis.tfg.apimercancias.model.Usuario;
 import com.alis.tfg.apimercancias.service.UsuarioService;
@@ -26,15 +28,15 @@ public class UsuarioController
 		return service.readAll ( );
 	}
 
-	@GetMapping ( "/login" )
+	@PostMapping ( "/login" )
 	public Usuario login ( @RequestBody UsuarioDto usuarioDto )
 	{
 		return service.checkPassword ( usuarioDto );
 	}
 
 	@PutMapping ( "/cambiar-contrasena" )
-	public boolean changePassword ( @RequestBody UsuarioDto usuarioDto )
+	public boolean changePassword ( @RequestBody ContrasenaDto contrasenaDto )
 	{
-		return service.editPassword ( usuarioDto );
+		return service.editPassword ( contrasenaDto );
 	}
 }

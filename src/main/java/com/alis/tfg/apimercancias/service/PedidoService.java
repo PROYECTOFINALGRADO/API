@@ -14,6 +14,9 @@ import com.alis.tfg.apimercancias.repository.PedidoRepository;
 public class PedidoService
 {
 	@Autowired
+	ProveedorService proveedorService;
+
+	@Autowired
 	PedidoRepository repository;
 
 	@Autowired
@@ -52,10 +55,12 @@ public class PedidoService
 
 	public Long add ( PedidoDto pedidoDto )
 	{
-		Long result = ( long ) 0;
+		Long result = 0L;
 		if ( pedidoDto != null )
 		{
-			result = repository.save ( mapper.toEntity ( pedidoDto ) )
+			Pedido pedido = mapper.toEntity ( pedidoDto );
+			pedido.setCodigoProveedor ( proveedorService.read ( pedidoDto.getCodigoProveedor ( ) ) );
+			result = repository.save ( pedido )
 					.getPedidoId ( );
 		}
 

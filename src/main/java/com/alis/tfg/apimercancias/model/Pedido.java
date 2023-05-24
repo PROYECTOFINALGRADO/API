@@ -59,6 +59,6 @@ public class Pedido
 	@JoinColumn ( name = "proveedor_id" )
 	private Proveedor codigoProveedor;
 
-	@OneToMany ( cascade = CascadeType.ALL, mappedBy = "pedidos" )
+	@OneToMany ( mappedBy = "id.pedido", cascade = CascadeType.ALL, orphanRemoval = true )
 	private List < ProductoPedido > productosPedidosCollection;
 }

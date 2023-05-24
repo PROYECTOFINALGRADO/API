@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductoDto
+public class ProductoCompletoDto
 		implements Serializable
 {
 
 	private Long productoId;
 
-	private Long departamentoId;
+	private DepartamentoDto departamento;
 
 	private String nombre;
 

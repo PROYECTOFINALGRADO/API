@@ -1,14 +1,18 @@
 package com.alis.tfg.apimercancias.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alis.tfg.apimercancias.dto.ProductoDto;
 import com.alis.tfg.apimercancias.mapper.ProductoMapper;
+import com.alis.tfg.apimercancias.model.Departamento;
 import com.alis.tfg.apimercancias.model.Producto;
 import com.alis.tfg.apimercancias.repository.ProductoRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ProductoService
@@ -19,9 +23,16 @@ public class ProductoService
 	@Autowired
 	ProductoMapper mapper;
 
+	@Autowired
+	DepartamentoService departamentoService;
+
+	@Transactional
 	public List < Producto > read ( )
 	{
-		return repository.findAll ( );
+		List < Producto > productos = repository.findAll ( );
+		productos.forEach ( Producto::getDepartamento );
+
+		return productos;
 	}
 
 	public Producto read ( Long id )
@@ -30,14 +41,14 @@ public class ProductoService
 				.orElse ( null );
 	}
 
-	public Boolean edit ( Producto producto )
+	public Boolean edit ( ProductoDto productoDto )
 	{
 		Boolean result = false;
 		try
 		{
-			if ( producto != null )
+			if ( productoDto != null )
 			{
-				repository.save ( producto );
+				repository.save ( this.toEntity ( productoDto ) );
 				result = true;
 			}
 
@@ -53,11 +64,11 @@ public class ProductoService
 	{
 		Boolean result = false;
 
-		if ( !repository.findByNombre ( productoDto.getNombre ( ) )
+		if ( repository.findByNombre ( productoDto.getNombre ( ) )
 				.isEmpty ( ) )
 		{
+			repository.save ( this.toEntity ( productoDto ) );
 			result = true;
-			repository.save ( mapper.toEntity ( productoDto ) );
 		}
 
 		return result;
@@ -74,5 +85,18 @@ public class ProductoService
 		}
 
 		return result;
+	}
+
+	private Producto toEntity ( ProductoDto dto )
+	{
+		Producto entity = mapper.toEntity ( dto );
+		Optional < Departamento > departamento = departamentoService.read ( dto.getDepartamentoId ( ) );
+
+		if ( departamento.isPresent ( ) )
+		{
+			entity.setDepartamento ( departamento.get ( ) );
+		}
+
+		return entity;
 	}
 }
